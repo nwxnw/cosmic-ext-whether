@@ -17,29 +17,26 @@ search-error = Sökningen misslyckades: {$error}
 manage-locations = Hantera platser
 no-saved-locations = Inga sparade platser
 
-## TODO Current-card labels - now hold English stubs
-## Current card - hero
-label-wind = Wind
-label-precipitation = Precipitation
-label-humidity = Humidity
+## Nuvarande kort - hjältetitel
+label-wind = Vind
+label-precipitation = Nederbörd
+label-humidity = Fuktighet
 label-aqi = AQI
 label-uv = UV
-feels-like = Feels like {$temp}
-gusting-to = gusting to {$gust}
+feels-like = Känns som {$temp}
+gusting-to = vindpustar till {$gust}
 
-## TODO Current-card "More" labels - now hold English stubs
-## Current card - "More" expander
-label-more = More
-label-less = Less
-label-dew-point = Dew point
-label-pressure = Pressure
-label-air-quality = Air quality
-label-ozone = Ozone
+## CNuvarande kort- "Mer" expander
+label-more = Mer
+label-less = Mindre
+label-dew-point = Daggpunkt
+label-pressure = Tryck
+label-air-quality = Luftkvalitet
+label-ozone = Ozon
 
-## TODO labels for Sunrise/Sunset times - now hold English stubs
-## Forecast (hourly / daily)
-label-sunrise = Sunrise
-label-sunset = Sunset
+## Prognos (varje timme / dagligen)
+label-sunrise = Soluppgång
+label-sunset = Solnedgång
 
 ##Alerts
 alerts-heading = Aktiva varningar
@@ -48,33 +45,33 @@ alerts-heading = Aktiva varningar
 updated-ago = Uppdaterad {$minutes} min sedan
 updated-now = Uppdaterad just nu
 
-## TODO - UV labels - now hold English stubs
-## Reference - UV levels
-uv-level-low = Low
-uv-level-moderate = Moderate
-uv-level-high = High
-uv-level-very-high = Very High
-uv-level-extreme = Extreme
+## UV etiketter
+## Reference - UV etiketter
+uv-level-low = Låg
+uv-level-moderate = Måttlig
+uv-level-high = Hög
+uv-level-very-high = Väldigt hög
+uv-level-extreme = Extrem
 
-## TODO - AQI categories both EU and US categories - some
-## overlap - now hold English stubs
-## Reference - AQI categories
-aqi-cat-good = Good
-aqi-cat-moderate = Moderate
-aqi-cat-unhealthy-sensitive = Unhealthy for Sensitive Groups
-aqi-cat-unhealthy = Unhealthy
-aqi-cat-very-unhealthy = Very Unhealthy
-aqi-cat-hazardous = Hazardous
-aqi-cat-fair = Fair
-aqi-cat-poor = Poor
-aqi-cat-very-poor = Very Poor
-aqi-cat-extremely-poor = Extremely Poor
+## AQI-kategorier, både EU och USA-kategorier 
+## Reference - AQI-kategorier
+aqi-cat-good = Bra
+aqi-cat-moderate = Måttligt
+aqi-cat-unhealthy-sensitive = Ohälsosamt för känsliga grupper
+aqi-cat-unhealthy = Ohälsosamt
+aqi-cat-very-unhealthy = Väldigt ohälsosamt
+aqi-cat-hazardous = Farligt
+aqi-cat-fair = Rättvist
+aqi-cat-poor = Dåligt
+aqi-cat-very-poor = Väldigt dåligt
+aqi-cat-extremely-poor = Extremt dåligt
 
-## TODO - About page - how holds English stubs
-##About
-app-title = Whether
-about = About
-about-summary = Data from Open-Meteo, NWS & JMA
+## Om sida 
+##Om
+app-title = Väder
+about = Om
+about-summary = Data från Open-Meteo, NWS & JMA
 about-summary-2 = via weathervane
-about-homepage = Homepage
-about-issues = Report an issue
+about-homepage = Hemsida
+about-issues = Rapportera ett problem
+
