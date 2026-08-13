@@ -640,7 +640,7 @@ impl AppModel {
             for i in offset..end {
                 let period = &forecast.hourly_periods[i];
                 let hour_label = if i == 0 {
-                    "Now".to_string()
+                    fl!("hour-now")
                 } else {
                     period
                         .start_time

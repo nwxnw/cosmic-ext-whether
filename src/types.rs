@@ -1,3 +1,4 @@
+use crate::fl;
 use serde::{Deserialize, Serialize};
 
 // --- Weather alert types ---
@@ -252,6 +253,11 @@ pub fn pair_daily_periods(periods: &[ForecastPeriod]) -> Vec<DaySummary> {
 pub fn format_hour(start_time: &str) -> String {
     if let Some(t_pos) = start_time.find('T') {
         if let Ok(hour) = start_time[t_pos + 1..t_pos + 3].parse::<u32>() {
+            // Locales set `clock-24h = true` to use a 24-hour clock ("14h");
+            // the default (en) keeps the 12-hour AM/PM clock.
+            if fl!("clock-24h") == "true" {
+                return format!("{hour}h");
+            }
             return match hour {
                 0 => "12 AM".to_string(),
                 1..=11 => format!("{hour} AM"),

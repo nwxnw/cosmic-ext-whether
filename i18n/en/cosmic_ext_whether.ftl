@@ -71,3 +71,41 @@ about-summary = Data from Open-Meteo, NWS & JMA
 about-summary-2 = via weathervane
 about-homepage = Homepage
 about-issues = Report an issue
+
+## Weather conditions
+condition-clear-sky = Clear sky
+condition-mainly-clear = Mainly clear
+condition-partly-cloudy = Partly cloudy
+condition-overcast = Overcast
+condition-fog = Fog
+condition-drizzle = Drizzle
+condition-freezing-drizzle = Freezing drizzle
+condition-rain = Rain
+condition-freezing-rain = Freezing rain
+condition-snow = Snow
+condition-snow-grains = Snow grains
+condition-rain-showers = Rain showers
+condition-snow-showers = Snow showers
+condition-thunderstorm = Thunderstorm
+condition-thunderstorm-hail = Thunderstorm with hail
+condition-unknown = Unknown
+
+## Day names
+day-today = Today
+day-monday = Monday
+day-tuesday = Tuesday
+day-wednesday = Wednesday
+day-thursday = Thursday
+day-friday = Friday
+day-saturday = Saturday
+day-sunday = Sunday
+
+## Night periods
+night-tonight = Tonight
+night-day = {$day} Night
+
+## Hourly
+hour-now = Now
+
+## Clock format ("true" = 24-hour clock, otherwise 12-hour AM/PM)
+clock-24h = false

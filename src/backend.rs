@@ -1,3 +1,4 @@
+use crate::fl;
 use crate::nws;
 use crate::types::{
     AirQuality, AlertSeverity, CurrentObservation, DailySun, Forecast, ForecastPeriod, GridInfo,
@@ -141,9 +142,9 @@ fn build_daily_periods(
 
         // Night period (low)
         let night_name = if i == 0 {
-            "Tonight".to_string()
+            fl!("night-tonight")
         } else {
-            format!("{day_name} Night")
+            fl!("night-day", day = day_name.clone())
         };
         periods.push(ForecastPeriod {
             name: night_name,
@@ -233,10 +234,19 @@ fn hour_is_daytime(time: &str, daily: &[weathervane::DailyForecast]) -> bool {
 /// ISO date ("2026-03-01") to day name ("Sunday"); "Today" for the first day.
 fn date_to_day_name(date_str: &str, is_first: bool) -> String {
     if is_first {
-        return "Today".to_string();
+        return fl!("day-today");
     }
     if let Ok(date) = chrono::NaiveDate::parse_from_str(date_str, "%Y-%m-%d") {
-        return date.format("%A").to_string();
+        use chrono::Datelike;
+        return match date.weekday() {
+            chrono::Weekday::Mon => fl!("day-monday"),
+            chrono::Weekday::Tue => fl!("day-tuesday"),
+            chrono::Weekday::Wed => fl!("day-wednesday"),
+            chrono::Weekday::Thu => fl!("day-thursday"),
+            chrono::Weekday::Fri => fl!("day-friday"),
+            chrono::Weekday::Sat => fl!("day-saturday"),
+            chrono::Weekday::Sun => fl!("day-sunday"),
+        };
     }
     date_str.to_string()
 }
@@ -281,24 +291,24 @@ fn aqi_severity_index(c: &weathervane::AqiCategory) -> u8 {
 /// with `types::condition_icon()` (contains "rain"/"snow"/"storm"/"fog"/"cloud"/
 /// "clear" etc.) so the existing icon mapping still resolves. Day/night is applied
 /// downstream via `is_daytime`, so there's no day/night text split here.
-fn condition_label(c: &weathervane::WeatherCondition) -> &'static str {
+fn condition_label(c: &weathervane::WeatherCondition) -> String {
     use weathervane::WeatherCondition as C;
     match c {
-        C::ClearSky => "Clear sky",
-        C::MainlyClear => "Mainly clear",
-        C::PartlyCloudy => "Partly cloudy",
-        C::Overcast => "Overcast",
-        C::Foggy => "Fog",
-        C::Drizzle => "Drizzle",
-        C::FreezingDrizzle => "Freezing drizzle",
-        C::Rain => "Rain",
-        C::FreezingRain => "Freezing rain",
-        C::Snow => "Snow",
-        C::SnowGrains => "Snow grains",
-        C::RainShowers => "Rain showers",
-        C::SnowShowers => "Snow showers",
-        C::Thunderstorm => "Thunderstorm",
-        C::ThunderstormHail => "Thunderstorm with hail",
-        C::Unknown => "Unknown",
+        C::ClearSky => fl!("condition-clear-sky"),
+        C::MainlyClear => fl!("condition-mainly-clear"),
+        C::PartlyCloudy => fl!("condition-partly-cloudy"),
+        C::Overcast => fl!("condition-overcast"),
+        C::Foggy => fl!("condition-fog"),
+        C::Drizzle => fl!("condition-drizzle"),
+        C::FreezingDrizzle => fl!("condition-freezing-drizzle"),
+        C::Rain => fl!("condition-rain"),
+        C::FreezingRain => fl!("condition-freezing-rain"),
+        C::Snow => fl!("condition-snow"),
+        C::SnowGrains => fl!("condition-snow-grains"),
+        C::RainShowers => fl!("condition-rain-showers"),
+        C::SnowShowers => fl!("condition-snow-showers"),
+        C::Thunderstorm => fl!("condition-thunderstorm"),
+        C::ThunderstormHail => fl!("condition-thunderstorm-hail"),
+        C::Unknown => fl!("condition-unknown"),
     }
 }
