@@ -71,58 +71,55 @@ aqi-cat-poor = Słaba
 aqi-cat-very-poor = Bardzo słaba
 aqi-cat-extremely-poor = Ekstremalnie słaba
 
-## TODO - weather conditions - now hold English stubs
 ## Reference - weather conditions
-condition-clear-sky = Clear sky
-condition-mainly-clear = Mainly clear
-condition-partly-cloudy = Partly cloudy
-condition-overcast = Overcast
-condition-fog = Fog
-condition-drizzle = Drizzle
-condition-freezing-drizzle = Freezing drizzle
-condition-rain = Rain
-condition-freezing-rain = Freezing rain
-condition-snow = Snow
-condition-snow-grains = Snow grains
-condition-rain-showers = Rain showers
-condition-snow-showers = Snow showers
-condition-thunderstorm = Thunderstorm
-condition-thunderstorm-hail = Thunderstorm with hail
+condition-clear-sky = Bezchmurne niebo
+condition-mainly-clear = W większości bezchmurnie
+condition-partly-cloudy = Częściowe zachmurzenie
+condition-overcast = Zachmurzenie
+condition-fog = Mgła
+condition-drizzle = Mżawka
+condition-freezing-drizzle = Marznąca mżawka
+condition-rain = Deszcz
+condition-freezing-rain = Marznący deszcz
+condition-snow = Śnieg
+condition-snow-grains = Ziarenka śniegu
+condition-rain-showers = Przelotny deszcz
+condition-snow-showers = Przelotny śnieg
+condition-thunderstorm = Burza
+condition-thunderstorm-hail = Burza z gradem
 condition-unknown = Unknown
 
-## TODO - compass directions - now hold English stubs
 ## Reference - compass directions
 ## ABBREVIATIONS, not words. Use your locale's conventional short form
 ## (Swedish NE = "NO", not "Nordost")
 ## These render inline in the wind line of a 360px popup so should be short
-compass-n = N
-compass-ne = NE
-compass-e = E
-compass-se = SE
-compass-s = S
-compass-sw = SW
-compass-w = W
-compass-nw = NW
+compass-n = pn.
+compass-ne = pn.-wsch.
+compass-e = wsch.
+compass-se = pd.-wsch.
+compass-s = pd.
+compass-sw = pd.-zach.
+compass-w = zach.
+compass-nw = pn.-zach.
 
-## TODO - weekdays, relative day labels and clock format - now hold English stubs
 ## Reference - weekdays
-weekday-monday = Monday
-weekday-tuesday = Tuesday
-weekday-wednesday = Wednesday
-weekday-thursday = Thursday
-weekday-friday = Friday
-weekday-saturday = Saturday
-weekday-sunday = Sunday
+weekday-monday = Poniedziałek
+weekday-tuesday = Wtorek
+weekday-wednesday = Środa
+weekday-thursday = Czwartek
+weekday-friday = Piątek
+weekday-saturday = Sobota
+weekday-sunday = Niedziela
 
 ## Reference - relative day labels
-day-today = Today
-day-this-afternoon = This Afternoon
-day-tonight = Tonight
-day-overnight = Overnight
+day-today = Dzisiaj
+day-this-afternoon = Popołudniu
+day-tonight = Wieczorem
+day-overnight = W nocy
 
 # Hourly strip; "Now" heads the current hour's column
-hourly-now = Now
-# 12-hour clock markers. Keep short — these render in a six-column strip.
+hourly-now = Teraz
+# 12-hour clock markers. Keep short — these render in a six-column strip. I don't think they have translation for this language, so I left them as-is.
 time-am = AM
 time-pm = PM
 
