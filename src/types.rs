@@ -520,4 +520,104 @@ mod tests {
         assert_eq!(rows, vec![("Heat", 2), ("Heat", 1), ("Wind", 1)]);
         assert_eq!(groups[1].first().severity, AlertSeverity::Severe);
     }
+    fn period(is_daytime: bool, temperature: i32, start_time: Option<&str>) -> ForecastPeriod {
+        ForecastPeriod {
+            name: String::new(),
+            temperature,
+            temperature_unit: "F".into(),
+            wind_speed: String::new(),
+            wind_direction: String::new(),
+            compass: None,
+            short_forecast: String::new(),
+            detailed_forecast: String::new(),
+            is_daytime,
+            probability_of_precipitation: None,
+            start_time: start_time.map(str::to_string),
+            condition: None,
+        }
+    }
+
+    fn highs_and_lows(days: &[DaySummary]) -> Vec<(Option<i32>, Option<i32>)> {
+        days.iter().map(|d| (d.high, d.low)).collect()
+    }
+
+    #[test]
+    fn day_and_night_pair_into_one_summary() {
+        let periods = [
+            period(true, 75, None),
+            period(false, 52, None),
+            period(true, 71, None),
+            period(false, 50, None),
+        ];
+        let days = pair_daily_periods(&periods);
+        assert_eq!(
+            highs_and_lows(&days),
+            vec![(Some(75), Some(52)), (Some(71), Some(50))]
+        );
+        assert!(days.iter().all(|d| d.is_daytime));
+    }
+
+    #[test]
+    fn leading_night_becomes_a_low_only_row() {
+        // NWS opens with "Tonight" when the forecast is fetched after dark.
+        let periods = [
+            period(false, 52, None),
+            period(true, 75, None),
+            period(false, 50, None),
+        ];
+        let days = pair_daily_periods(&periods);
+        assert_eq!(
+            highs_and_lows(&days),
+            vec![(None, Some(52)), (Some(75), Some(50))]
+        );
+        assert!(!days[0].is_daytime);
+    }
+
+    #[test]
+    fn day_without_a_following_night_keeps_no_low() {
+        let periods = [
+            period(true, 75, None),
+            period(true, 71, None),
+            period(false, 50, None),
+        ];
+        let days = pair_daily_periods(&periods);
+        assert_eq!(
+            highs_and_lows(&days),
+            vec![(Some(75), None), (Some(71), Some(50))]
+        );
+    }
+
+    #[test]
+    fn trailing_day_and_empty_input() {
+        assert_eq!(
+            highs_and_lows(&pair_daily_periods(&[period(true, 75, None)])),
+            vec![(Some(75), None)]
+        );
+        assert!(pair_daily_periods(&[]).is_empty());
+    }
+
+    #[test]
+    fn date_and_hour_come_from_start_time() {
+        let periods = [
+            period(true, 75, Some("2026-09-04T06:00:00-07:00")),
+            period(false, 52, None),
+        ];
+        let days = pair_daily_periods(&periods);
+        assert_eq!(days[0].date.as_deref(), Some("2026-09-04"));
+        assert_eq!(days[0].hour, Some(6));
+
+        let days = pair_daily_periods(&[period(false, 52, None)]);
+        assert_eq!((days[0].date.as_deref(), days[0].hour), (None, None));
+    }
+
+    #[test]
+    fn precip_chance_truncates_to_whole_percent() {
+        let mut p = period(true, 75, None);
+        p.probability_of_precipitation = Some(PrecipValue { value: Some(40.0) });
+        assert_eq!(pair_daily_periods(&[p])[0].precip_chance, Some(40));
+
+        let mut p = period(true, 75, None);
+        p.probability_of_precipitation = Some(PrecipValue { value: None });
+        assert_eq!(pair_daily_periods(&[p])[0].precip_chance, None);
+    }
 }

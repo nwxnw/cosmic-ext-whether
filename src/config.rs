@@ -132,25 +132,21 @@ pub fn detect_military_time() -> bool {
     detect_military_time_from_locale()
 }
 
-/// Detect whether to default to military time based on the user's locale.
-///
-/// Checks `LC_TIME` then `LANG` for a country code.
-/// US, Canada (CA), Australia (AU), New Zealand (NZ), Philippines (PH), India (IN),
-/// Pakistan (PK), Bangladesh (BD), Malaysia (MY), Egypt (EG), Suadi Arabia (SA), Jordan (JO),
-/// Mexico (MX), Colombia (CO) use 12 hr clock; everyone else uses 24 hr clock.
-/// Falls back to `false` (12 hr clock) if no locale can be determined.
 fn detect_military_time_from_locale() -> bool {
-    let locale_str = std::env::var("LC_TIME")
+    let locale = std::env::var("LC_TIME")
         .ok()
         .filter(|s| !s.is_empty())
         .or_else(|| std::env::var("LANG").ok().filter(|s| !s.is_empty()));
+    military_time_for_locale(locale.as_deref())
+}
 
-    let Some(locale) = locale_str else {
+/// Country code after `_` in a locale string decides the clock.
+/// `None` and anything without a parseable country keep the 12-hour default.
+fn military_time_for_locale(locale: Option<&str>) -> bool {
+    let Some(locale) = locale else {
         return false;
     };
 
-    // Extract country code from e.g. "en_US.UTF-8" or "en_US"
-    // Find the '_' separator, then take the next 2 chars as country code
     let country = locale
         .find('_')
         .and_then(|pos| locale.get(pos + 1..pos + 3))
@@ -162,6 +158,54 @@ fn detect_military_time_from_locale() -> bool {
             | "MX" | "CO",
         ) => false,
         Some(_) => true,
-        None => false, // Can't parse → preserve existing default
+        None => false,
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::military_time_for_locale;
+
+    #[test]
+    fn twelve_hour_countries_stay_on_twelve_hour() {
+        for l in [
+            "en_US.UTF-8",
+            "en_CA",
+            "en_AU.UTF-8",
+            "es_MX",
+            "en_IN",
+            "es_CO",
+        ] {
+            assert!(!military_time_for_locale(Some(l)), "{l}");
+        }
+    }
+
+    #[test]
+    fn other_countries_use_twenty_four_hour() {
+        for l in [
+            "sv_SE.UTF-8",
+            "en_GB",
+            "pt_BR.UTF-8",
+            "pl_PL",
+            "de_DE@euro",
+            "ja_JP.UTF-8",
+        ] {
+            assert!(military_time_for_locale(Some(l)), "{l}");
+        }
+    }
+
+    #[test]
+    fn country_code_is_case_insensitive() {
+        assert!(!military_time_for_locale(Some("en_us.utf8")));
+        assert!(military_time_for_locale(Some("sv_se")));
+    }
+
+    #[test]
+    fn missing_or_unparseable_locale_keeps_the_default() {
+        assert!(!military_time_for_locale(None));
+        assert!(!military_time_for_locale(Some("C")));
+        assert!(!military_time_for_locale(Some("POSIX")));
+        assert!(!military_time_for_locale(Some("en")));
+        assert!(!military_time_for_locale(Some("en_")));
     }
 }

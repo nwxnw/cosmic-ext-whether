@@ -137,3 +137,90 @@ pub fn grid_matches(geometry: Option<&Geometry>, lat: f64, lon: f64) -> bool {
     };
     km_between(centroid, (lat, lon)) <= GRID_MATCH_KM
 }
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    /// Closed square ring about 2.8km across, centred on `(lat, lon)`.
+    fn cell(lat: f64, lon: f64) -> Geometry {
+        let d = 0.0125;
+        Geometry {
+            coordinates: vec![vec![
+                [lon - d, lat - d],
+                [lon + d, lat - d],
+                [lon + d, lat + d],
+                [lon - d, lat + d],
+                [lon - d, lat - d],
+            ]],
+        }
+    }
+
+    #[test]
+    fn centroid_is_the_ring_mean_in_lat_lon_order() {
+        let (lat, lon) = ring_centroid(&cell(45.0, -122.0)).unwrap();
+        assert!((lat - 45.0).abs() < 0.01, "{lat}");
+        assert!((lon + 122.0).abs() < 0.01, "{lon}");
+    }
+
+    #[test]
+    fn centroid_is_none_without_a_ring() {
+        assert!(ring_centroid(&Geometry {
+            coordinates: vec![]
+        })
+        .is_none());
+        assert!(ring_centroid(&Geometry {
+            coordinates: vec![vec![]]
+        })
+        .is_none());
+    }
+
+    #[test]
+    fn km_between_matches_a_degree_of_latitude() {
+        let d = km_between((0.0, 0.0), (1.0, 0.0));
+        assert!((d - 111.32).abs() < 0.01, "{d}");
+        // A degree of longitude shrinks with the cosine of the latitude.
+        let d = km_between((60.0, 0.0), (60.0, 1.0));
+        assert!((d - 55.66).abs() < 0.1, "{d}");
+    }
+
+    #[test]
+    fn grid_matches_its_own_cell() {
+        let g = cell(45.0, -122.0);
+        assert!(grid_matches(Some(&g), 45.0, -122.0));
+        assert!(grid_matches(Some(&g), 45.012, -122.012));
+    }
+
+    #[test]
+    fn grid_rejects_a_cell_far_away() {
+        let g = cell(45.0, -122.0);
+        assert!(!grid_matches(Some(&g), 47.6, -122.3)); // ~290km
+        assert!(!grid_matches(Some(&g), 45.0, -121.0)); // ~79km
+    }
+
+    #[test]
+    fn gate_sits_at_twenty_km() {
+        // 20km is 0.1797 degrees of latitude on this approximation.
+        let g = cell(45.0, -122.0);
+        assert!(grid_matches(Some(&g), 45.17, -122.0));
+        assert!(!grid_matches(Some(&g), 45.19, -122.0));
+    }
+
+    #[test]
+    fn grid_fails_open_without_usable_geometry() {
+        assert!(grid_matches(None, 45.0, -122.0));
+        assert!(grid_matches(
+            Some(&Geometry {
+                coordinates: vec![]
+            }),
+            45.0,
+            -122.0
+        ));
+        assert!(grid_matches(
+            Some(&Geometry {
+                coordinates: vec![vec![]]
+            }),
+            45.0,
+            -122.0
+        ));
+    }
+}
