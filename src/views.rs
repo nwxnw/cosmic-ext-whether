@@ -571,8 +571,7 @@ impl AppModel {
                 .map(|u| (format!("{} {}", u.round() as i32, uv_level(u)), u >= 11.0));
             let aqi = self.air_quality.as_ref();
 
-            if aqi.is_some_and(|a| a.severity >= 3) {
-                let a = aqi.unwrap();
+            if let Some(a) = aqi.filter(|a| a.severity >= 3) {
                 let sev = a.severity;
                 let label = format!(
                     "{}: {} {}",
