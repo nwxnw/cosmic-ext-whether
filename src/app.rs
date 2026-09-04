@@ -237,6 +237,19 @@ impl cosmic::Application for AppModel {
                                 width: bounds.width as i32,
                                 height: bounds.height as i32,
                             };
+                            // The panel centers the applet window in a slot of icon size plus
+                            // twice the minor-axis padding; push the popup out to the slot edge.
+                            let (icon_w, icon_h) = state.core.applet.suggested_size(true);
+                            let (_, minor) = state.core.applet.suggested_padding(true);
+                            let (slot, extent) = if state.core.applet.is_horizontal() {
+                                (f32::from(icon_h + 2 * minor), bounds.height)
+                            } else {
+                                (f32::from(icon_w + 2 * minor), bounds.width)
+                            };
+                            let shortfall = ((slot - extent) / 2.0).max(0.0).round() as i32;
+                            let (ox, oy) = popup_settings.positioner.offset;
+                            popup_settings.positioner.offset =
+                                (ox + ox.signum() * shortfall, oy + oy.signum() * shortfall);
                             popup_settings
                         },
                         None,
