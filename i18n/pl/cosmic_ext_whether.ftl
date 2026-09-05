@@ -39,13 +39,14 @@ label-sunrise = Wschód słońca
 label-sunset = Zachód słońca
 
 ## Alerts
-alerts-unavailable = Alerts unavailable
+alerts-unavailable = Ostrzeżenia niedostępne
 alerts-national = { $count ->
-    [one] 1 alert nationwide, your area could not be determined
-    *[other] { $count } alerts nationwide, your area could not be determined
+    [one] 1 ostrzeżenie ogólnokrajowe, nie można określić twojej jednostki terytorialnej
+    [few] { $count } ostrzeżenia ogólnokrajowe, nie można określić twojej jednostki terytorialnej
+    *[other] { $count } ostrzeżeń ogólnokrajowych, nie można określić twojej jednostki terytorialnej
 }
-alert-until = Until { $time }
-alert-full-description = Full description
+alert-until = Przez { $time }
+alert-full-description = Pełny opis
 
 ## Footer
 # `$minutes` is a number, so a plural selector works here if your language needs one.
