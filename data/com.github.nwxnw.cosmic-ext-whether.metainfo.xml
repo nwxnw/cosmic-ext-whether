@@ -37,6 +37,11 @@
     <keyword>temperature</keyword>
     <keyword>air quality</keyword>
     <keyword>COSMIC</keyword>
+    <keyword xml:lang="pl">pogoda</keyword>
+    <keyword xml:lang="pl">prognoza</keyword>
+    <keyword xml:lang="pl">temperatura</keyword>
+    <keyword xml:lang="pl">jakość powietrza</keyword>
+    <keyword xml:lang="pl">COSMIC</keyword>
   </keywords>
   <url type="vcs-browser">https://github.com/nwxnw/cosmic-ext-whether</url>
   <launchable type="desktop-id">com.github.nwxnw.cosmic-ext-whether.desktop</launchable>
@@ -58,6 +63,7 @@
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/nwxnw/cosmic-ext-whether/master/screenshots/whether-languages-store.png</image>
       <caption>Current conditions and forecast in English, Swedish, Polish, and Brazilian Portuguese</caption>
+      <caption xml:lang="pl">Obecne warunki oraz prognozy w językach: angielskim, szwedzkim, polskim i brazylijskim portugalskim</caption>
     </screenshot>
   </screenshots>
   <releases>
