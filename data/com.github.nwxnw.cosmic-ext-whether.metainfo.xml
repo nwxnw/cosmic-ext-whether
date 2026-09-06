@@ -8,6 +8,7 @@
   </developer>
   <name>Whether</name>
   <summary>Weather forecasts, air quality, and alerts for the COSMIC panel</summary>
+  <summary xml:lang="pl">Prognoza pogody, jakość powietrza i ostrzeżenia pogodowe dla panelu COSMIC</summary>
   <description>
     <p>Whether is a weather applet for the COSMIC desktop panel, showing current conditions, hourly and 7-day forecasts, and air quality for locations worldwide, with weather alerts in supported regions.</p>
     <p xml:lang="pl">Whether jest apletem pogodowym panelu dla środowiska COSMIC, pokazującym obecne warunki pogodowe, godzinne i tygodniowe prognozy, jakość powietrza dla całego świata z ostrzeżeniami pogodowymi dla wspieranych regionów.</p>
