@@ -8,6 +8,7 @@
   </developer>
   <name>Whether</name>
   <summary>Weather forecasts, air quality, and alerts for the COSMIC panel</summary>
+  <summary xml:lang="pl">Prognoza pogody, jakość powietrza i ostrzeżenia pogodowe dla panelu COSMIC</summary>
   <description>
     <p>Whether is a weather applet for the COSMIC desktop panel, showing current conditions, hourly and 7-day forecasts, and air quality for locations worldwide, with weather alerts in supported regions.</p>
     <p xml:lang="pl">Whether jest apletem pogodowym panelu dla środowiska COSMIC, pokazującym obecne warunki pogodowe, godzinne i tygodniowe prognozy, jakość powietrza dla całego świata z ostrzeżeniami pogodowymi dla wspieranych regionów.</p>
@@ -36,6 +37,11 @@
     <keyword>temperature</keyword>
     <keyword>air quality</keyword>
     <keyword>COSMIC</keyword>
+    <keyword xml:lang="pl">pogoda</keyword>
+    <keyword xml:lang="pl">prognoza</keyword>
+    <keyword xml:lang="pl">temperatura</keyword>
+    <keyword xml:lang="pl">jakość powietrza</keyword>
+    <keyword xml:lang="pl">COSMIC</keyword>
   </keywords>
   <url type="vcs-browser">https://github.com/nwxnw/cosmic-ext-whether</url>
   <launchable type="desktop-id">com.github.nwxnw.cosmic-ext-whether.desktop</launchable>
@@ -57,6 +63,7 @@
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/nwxnw/cosmic-ext-whether/master/screenshots/whether-languages-store.png</image>
       <caption>Current conditions and forecast in English, Swedish, Polish, and Brazilian Portuguese</caption>
+      <caption xml:lang="pl">Obecne warunki oraz prognozy w językach: angielskim, szwedzkim, polskim i brazylijskim portugalskim</caption>
     </screenshot>
   </screenshots>
   <!-- Release notes are English-only. Do not add xml:lang translations here;
@@ -66,7 +73,7 @@
       <description>
         <ul>
           <li>Localized weather conditions, wind directions, weekday names, and clock format</li>
-          <li>Added Polish and Brazilian Portuguese translations</li>
+          <li>Added Polish and Brazilian Portuguese translations</li>          
           <li>12/24-hour clock now follows the COSMIC time setting</li>
           <li>Spacing and padding scale with the COSMIC interface density setting</li>
           <li>The popup now scrolls, so expanding a day no longer clips the footer</li>
