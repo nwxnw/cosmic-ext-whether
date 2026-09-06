@@ -13,7 +13,7 @@
     <p>Whether is a weather applet for the COSMIC desktop panel, showing current conditions, hourly and 7-day forecasts, and air quality for locations worldwide, with weather alerts in supported regions.</p>
     <p xml:lang="pl">Whether jest apletem pogodowym panelu dla środowiska COSMIC, pokazującym obecne warunki pogodowe, godzinne i tygodniowe prognozy, jakość powietrza dla całego świata z ostrzeżeniami pogodowymi dla wspieranych regionów.</p>
     <p>Weather data is sourced automatically by location via weathervane — Open-Meteo provides the worldwide base forecast, NWS overlays US current conditions and daily forecast detail, JMA provides local current temperatures in Japan.</p>
-    <p xml:lang="pl">Dane pogodowe są automatycznie szczytywane dla wybranego położenia przez weathervane - Open-Meteo zapewnia ogólnoświatowe prognozy, NWS nakłada obecne warunki i prognozy dla Stanów Zjednoczonych a JMA mierzy temperatury dla Japonii. </p>
+    <p xml:lang="pl">Dane pogodowe są automatycznie sczytywane dla wybranego położenia przez weathervane - Open-Meteo zapewnia ogólnoświatowe prognozy, NWS nakłada obecne warunki i prognozy dla Stanów Zjednoczonych, a JMA mierzy temperatury dla Japonii.</p>
     <p>Features include:</p>
     <p xml:lang="pl">Funkcjonalności:</p>
     <ul>
@@ -26,7 +26,7 @@
       <li>Weather alerts for the US, Europe, Canada, and Australia</li>
       <li xml:lang="pl">Ostrzeżenia pogodowe dla Stanów Zjednoczonych, Europy, Kanady i Australii</li>
       <li>Location search with multiple saved locations</li>
-      <li xml:lang="pl">Wyszukiwanie położenia z możliwością wielokrotnego wyboru</li>
+      <li xml:lang="pl">Wyszukiwanie położenia z możliwością zapisania wielu położeń</li>
       <li>Imperial/metric unit toggle</li>
       <li xml:lang="pl">Przełączanie pomiędzy imperialnymi i metrycznymi jednostkami</li>
     </ul>
@@ -73,7 +73,7 @@
       <description>
         <ul>
           <li>Localized weather conditions, wind directions, weekday names, and clock format</li>
-          <li>Added Polish and Brazilian Portuguese translations</li>          
+          <li>Added Polish and Brazilian Portuguese translations</li>
           <li>12/24-hour clock now follows the COSMIC time setting</li>
           <li>Spacing and padding scale with the COSMIC interface density setting</li>
           <li>The popup now scrolls, so expanding a day no longer clips the footer</li>
