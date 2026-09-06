@@ -38,14 +38,15 @@ label-ozone = Ozônio
 label-sunrise = Nascer do sol
 label-sunset = Pôr do sol
 
+## TODO: Review translations of English stubs
 ## Alerts
-alerts-unavailable = Alerts unavailable
+alerts-unavailable = Alertas indisponíveis
 alerts-national = { $count ->
-    [one] 1 alert nationwide, your area could not be determined
-    *[other] { $count } alerts nationwide, your area could not be determined
+    [one] 1 alerta em alerta em todo o país, não foi possível determinar sua região
+    *[other] { $count } alertas em todo o país, não foi possível determinar sua região
 }
-alert-until = Until { $time }
-alert-full-description = Full description
+alert-until = Até { $time }
+alert-full-description = Descrição completa
 
 ## Footer
 # `$minutes` is a number, so a plural selector works here if your language needs one.

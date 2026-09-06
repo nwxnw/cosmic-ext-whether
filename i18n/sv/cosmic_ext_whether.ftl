@@ -38,14 +38,16 @@ label-ozone = Ozon
 label-sunrise = Soluppgång
 label-sunset = Solnedgång
 
+## TODO: Review translations of English stubs
 ##Aviseringar
-alerts-unavailable = Alerts unavailable
+alerts-unavailable = Varningar otillgängliga
+## TODO: Translate English stub
 alerts-national = { $count ->
-    [one] 1 alert nationwide, your area could not be determined
-    *[other] { $count } alerts nationwide, your area could not be determined
+    [one] varning i hela landet, ditt område kunde inte fastställas
+    *[other] { $count } varningar i hela landet, ditt område kunde inte fastställas
 }
-alert-until = Until { $time }
-alert-full-description = Full description
+alert-until = Till { $time }
+alert-full-description = Fullständig beskrivning
 
 ##Sidfot
 # `$minutes` is a number, so a plural selector works here if your language needs one.
