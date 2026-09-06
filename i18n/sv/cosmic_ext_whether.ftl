@@ -41,9 +41,8 @@ label-sunset = Solnedgång
 ## TODO: Review translations of English stubs
 ##Aviseringar
 alerts-unavailable = Varningar otillgängliga
-## TODO: Translate English stub
 alerts-national = { $count ->
-    [one] varning i hela landet, ditt område kunde inte fastställas
+    [one] 1 varning i hela landet, ditt område kunde inte fastställas
     *[other] { $count } varningar i hela landet, ditt område kunde inte fastställas
 }
 alert-until = Till { $time }

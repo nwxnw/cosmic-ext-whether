@@ -42,7 +42,7 @@ label-sunset = Pôr do sol
 ## Alerts
 alerts-unavailable = Alertas indisponíveis
 alerts-national = { $count ->
-    [one] 1 alerta em alerta em todo o país, não foi possível determinar sua região
+    [one] 1 alerta em todo o país, não foi possível determinar sua região
     *[other] { $count } alertas em todo o país, não foi possível determinar sua região
 }
 alert-until = Até { $time }
