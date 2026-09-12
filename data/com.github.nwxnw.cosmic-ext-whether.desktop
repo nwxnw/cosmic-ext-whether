@@ -1,6 +1,7 @@
 [Desktop Entry]
 Name=Whether
 Comment=Weather forecasts, air quality and alerts
+Comment[pl]=Prognozy pogody, jakość powietrza i ostrzeżenia pogodowe
 Type=Application
 Exec=cosmic-ext-whether
 Terminal=false
