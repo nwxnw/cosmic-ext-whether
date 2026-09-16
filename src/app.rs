@@ -105,7 +105,7 @@ pub enum Message {
     ClosePopup,
     /// The fly-out trigger row: (`layout.virtual_offset()`, row bounds).
     ToggleFlyout(String, cosmic::iced::Vector, Rectangle),
-    Surface(cosmic::surface::Action),
+    Surface(cosmic::surface::Action<Message>),
     FetchWeather,
     WeatherFetched(u64, Box<Result<WeatherResult, String>>),
     Tick(()),
@@ -334,9 +334,7 @@ impl AppModel {
     fn handle(&mut self, message: Message) -> Task<Message> {
         match message {
             Message::Surface(a) => {
-                return cosmic::task::message(cosmic::Action::Cosmic(
-                    cosmic::app::Action::Surface(a),
-                ));
+                return cosmic::task::message(cosmic::Action::Surface(a));
             }
             Message::PopupClosed(id) => {
                 if self.flyout == Some(id) {
