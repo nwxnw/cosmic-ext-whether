@@ -63,12 +63,12 @@ uv-level-extreme = Extrem
 
 ## Reference - AQI categories
 aqi-cat-good = Gut
-aqi-cat-moderate = Mittel
+aqi-cat-moderate = Mäßig
 aqi-cat-unhealthy-sensitive = Gesundheitsschädlich für empfindliche Personen
 aqi-cat-unhealthy = Gesundheitsschädlich
 aqi-cat-very-unhealthy = Sehr gesundheitsschädlich
 aqi-cat-hazardous = Gefährlich
-aqi-cat-fair = Mittel
+aqi-cat-fair = Ausreichend
 aqi-cat-poor = Schlecht
 aqi-cat-very-poor = Sehr schlecht
 aqi-cat-extremely-poor = Extrem schlecht
