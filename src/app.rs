@@ -532,7 +532,7 @@ impl AppModel {
                     self.search_results.clear();
                     self.search_input.clear();
                     self.search_done = false;
-                    self.current_expanded = false;
+                    self.clear_location_data();
                     return self.start_fetch();
                 }
             }
@@ -548,11 +548,7 @@ impl AppModel {
                         .collect();
                     config::save_config(&self.config_handle, &self.config);
                     self.page = Page::Main;
-                    self.forecast = None;
-                    self.observation = None;
-                    self.air_quality = None;
-                    self.current_expanded = false;
-                    self.alerts = Alerts::default();
+                    self.clear_location_data();
                     return self.start_fetch();
                 }
             }
@@ -570,18 +566,11 @@ impl AppModel {
 
                     if self.config.locations.is_empty() {
                         self.config.active_location_index = 0;
-                        self.forecast = None;
-                        self.observation = None;
-                        self.alerts = Alerts::default();
+                        self.clear_location_data();
                         self.fetch_state = FetchState::Idle;
                         self.page = Page::Setup;
                     } else if idx == self.config.active_location_index {
                         self.config.active_location_index = 0;
-                        self.forecast = None;
-                        self.observation = None;
-                        self.air_quality = None;
-                        self.current_expanded = false;
-                        self.alerts = Alerts::default();
                         self.location_names = self
                             .config
                             .locations
@@ -589,6 +578,7 @@ impl AppModel {
                             .map(|l| l.name.clone())
                             .collect();
                         config::save_config(&self.config_handle, &self.config);
+                        self.clear_location_data();
                         return self.start_fetch();
                     } else if idx < self.config.active_location_index {
                         self.config.active_location_index -= 1;
@@ -654,6 +644,9 @@ impl AppModel {
                 let units_changed = self.config.use_fahrenheit != new_config.use_fahrenheit;
                 self.config = new_config;
                 if (location_changed || units_changed) && self.config.active_location().is_some() {
+                    if location_changed {
+                        self.clear_location_data();
+                    }
                     return self.start_fetch();
                 }
             }
@@ -671,6 +664,16 @@ impl AppModel {
             Message::Ignore => {}
         }
         Task::none()
+    }
+
+    /// Drop everything tied to the previous location so the view can't render it
+    /// against the new one while the fetch is in flight.
+    fn clear_location_data(&mut self) {
+        self.forecast = None;
+        self.observation = None;
+        self.air_quality = None;
+        self.alerts = Alerts::default();
+        self.current_expanded = false;
     }
 
     /// Bump the fetch generation, mark loading, and dispatch a fetch for the active
