@@ -12,7 +12,6 @@ pub enum AlertSeverity {
 }
 
 #[derive(Debug, Clone)]
-#[allow(dead_code)]
 pub struct WeatherAlert {
     pub id: String,
     pub description: String,
@@ -144,7 +143,6 @@ pub struct CurrentObservation {
 
 /// AirQuality struct mapped from weathervane's AirQualityData
 #[derive(Debug, Clone)]
-#[allow(dead_code)]
 pub struct AirQuality {
     pub aqi: i32,
     pub category: weathervane::AqiCategory,
@@ -202,7 +200,6 @@ pub struct ForecastProperties {
 
 #[derive(Debug, Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
-#[allow(dead_code)]
 pub struct ForecastPeriod {
     pub name: String,
     pub temperature: i32,
