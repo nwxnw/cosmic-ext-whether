@@ -1,7 +1,14 @@
 use crate::types::{ForecastPeriod, ForecastResponse, Geometry, GridInfo, PointsResponse};
 
 const BASE_URL: &str = "https://api.weather.gov";
-const USER_AGENT: &str = "cosmic-ext-whether/0.1.0 (https://github.com/nwxnw/cosmic-ext-whether)";
+const USER_AGENT: &str = concat!(
+    env!("CARGO_PKG_NAME"),
+    "/",
+    env!("CARGO_PKG_VERSION"),
+    " (",
+    env!("CARGO_PKG_REPOSITORY"),
+    ")"
+);
 
 #[derive(Debug, Clone)]
 pub enum NwsError {

@@ -1,7 +1,14 @@
 use crate::types::SearchResult;
 
 const NOMINATIM_URL: &str = "https://nominatim.openstreetmap.org/search";
-const USER_AGENT: &str = "cosmic-ext-whether/0.1.0 (https://github.com/nwxnw/cosmic-ext-whether)";
+const USER_AGENT: &str = concat!(
+    env!("CARGO_PKG_NAME"),
+    "/",
+    env!("CARGO_PKG_VERSION"),
+    " (",
+    env!("CARGO_PKG_REPOSITORY"),
+    ")"
+);
 
 #[derive(Debug, Clone)]
 pub struct GeoError(pub String);
