@@ -20,7 +20,7 @@ use crate::backend;
 use crate::config::{self, detect_military_time, WhetherConfig, APP_ID};
 use crate::geocoding;
 use crate::types::{
-    group_alerts, short_location_name, AirQuality, Alerts, CurrentObservation, FetchState,
+    group_alerts, saved_location_name, AirQuality, Alerts, CurrentObservation, FetchState,
     Forecast, SavedLocation, SearchResult, WeatherResult,
 };
 use crate::views::weather_icon_handle;
@@ -513,7 +513,7 @@ impl AppModel {
                 if let Some(result) = self.search_results.get(i) {
                     let country_code = result.address.as_ref().and_then(|a| a.country_code.clone());
                     let location = SavedLocation {
-                        name: short_location_name(&result.display_name),
+                        name: saved_location_name(result),
                         lat: result.lat.clone(),
                         lon: result.lon.clone(),
                         cached_grid: None,

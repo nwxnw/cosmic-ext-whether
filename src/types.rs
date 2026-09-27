@@ -372,6 +372,8 @@ pub(crate) fn iso_hour(s: &str) -> Option<u32> {
 #[derive(Debug, Clone, Deserialize)]
 pub struct SearchResult {
     pub display_name: String,
+    #[serde(default)]
+    pub name: Option<String>,
     pub lat: String,
     pub lon: String,
     #[serde(default)]
@@ -382,6 +384,26 @@ pub struct SearchResult {
 pub struct NominatimAddress {
     #[serde(default)]
     pub country_code: Option<String>,
+    #[serde(default)]
+    pub state: Option<String>,
+    #[serde(default)]
+    pub country: Option<String>,
+}
+
+/// Build a short "Place, Region" name for a saved location
+/// Use the results's own `name` with `address.state` or `address.country`
+/// where there is no state, falling back to parsing `display_name`.
+/// Reading the structured fields keeps a postcode out of the region slot
+pub fn saved_location_name(r: &SearchResult) -> String {
+    let region = r
+        .address
+        .as_ref()
+        .and_then(|a| a.state.as_deref().or(a.country.as_deref()));
+    match (r.name.as_deref().filter(|n| !n.is_empty()), region) {
+        (Some(name), Some(region)) => format!("{name}, {region}"),
+        (Some(name), None) => name.to_string(),
+        _ => short_location_name(&r.display_name),
+    }
 }
 
 /// Return the condition.icon_name from weathervane, mapping to weather clear for unknown condition
