@@ -390,10 +390,11 @@ pub struct NominatimAddress {
     pub country: Option<String>,
 }
 
-/// Build a short "Place, Region" name for a saved location
-/// Use the results's own `name` with `address.state` or `address.country`
+/// Build a short "Place, Region" name for a saved location.
+///
+/// Use the results' own `name` with `address.state` or `address.country`
 /// where there is no state, falling back to parsing `display_name`.
-/// Reading the structured fields keeps a postcode out of the region slot
+/// Reading the structured fields keeps a postcode out of the region slot.
 pub fn saved_location_name(r: &SearchResult) -> String {
     let region = r
         .address
@@ -510,6 +511,53 @@ where
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn search_result(v: serde_json::Value) -> SearchResult {
+        serde_json::from_value(v).unwrap()
+    }
+
+    #[test]
+    fn saved_name_skips_postcode() {
+        let r = search_result(serde_json::json!({
+            "display_name": "Athens, Athens Township, Athens County, Ohio, 45701, United States",
+            "name": "Athens",
+            "lat": "39.3292", "lon": "-82.1013",
+            "address": { "state": "Ohio", "postcode": "45701", "country": "United States", "country_code": "us" }
+        }));
+        assert_eq!(saved_location_name(&r), "Athens, Ohio");
+    }
+
+    #[test]
+    fn saved_name_county_result() {
+        let r = search_result(serde_json::json!({
+            "display_name": "Athens County, Ohio, United States",
+            "name": "Athens County",
+            "lat": "39.3333", "lon": "-82.0452",
+            "address": { "county": "Athens County", "state": "Ohio", "country": "United States", "country_code": "us" }
+        }));
+        assert_eq!(saved_location_name(&r), "Athens County, Ohio");
+    }
+
+    #[test]
+    fn saved_name_falls_back_to_country_without_state() {
+        let r = search_result(serde_json::json!({
+                    "display_name": "Berlin, Germany",
+                    "name": "Berlin",
+                    "lat": "52.5173", "lon": "13.3889",
+                    "address": { "city": "Berlin", "country": "Germany", "country_code": "de"
+        }
+                }));
+        assert_eq!(saved_location_name(&r), "Berlin, Germany");
+    }
+
+    #[test]
+    fn saved_name_without_structured_fields_parses_display_name() {
+        let r = search_result(serde_json::json!({
+            "display_name": "Denver, City and County of Denver, Colorado, United States",
+            "lat": "39.7392", "lon": "-104.9849"
+        }));
+        assert_eq!(saved_location_name(&r), "Denver, Colorado");
+    }
 
     fn alert(event: &str, severity: AlertSeverity) -> WeatherAlert {
         WeatherAlert {
