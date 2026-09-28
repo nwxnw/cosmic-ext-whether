@@ -1,6 +1,6 @@
 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="8" cy="8" r="4.8" fill="none" stroke="#232323" stroke-width="1.2"/>
-  <g stroke="#232323" stroke-width="1.2" stroke-linecap="round">
+  <circle cx="8" cy="8" r="4.8" fill="none" stroke="#F5C211" stroke-width="1.2"/>
+  <g stroke="#E5A50A" stroke-width="1.2" stroke-linecap="round">
     <line x1="8" y1="1.2" x2="8" y2="1.5"/>
     <line x1="8" y1="1.2" x2="8" y2="1.5" transform="rotate(45 8 8)"/>
     <line x1="8" y1="1.2" x2="8" y2="1.5" transform="rotate(90 8 8)"/>

@@ -20,7 +20,6 @@ desktop-src := 'data' / desktop
 metainfo-src := 'data' / APPID + '.metainfo.xml'
 wrapper-src := 'data' / APPID + '.sh'
 icon-src := 'data' / APPID + '-symbolic.svg'
-app-icon-src := 'data' / APPID + '.svg'
 
 default: build-release
 
@@ -41,7 +40,6 @@ install:
     sed -i 's|^Exec=.*|Exec={{bin_dir}}/{{name}}|' {{app_dir}}/{{APPID}}.desktop
     install -Dm0644 {{metainfo-src}} {{metainfo_dir}}/{{APPID}}.metainfo.xml
     install -Dm0644 {{icon-src}} {{icon_dir}}/{{APPID}}-symbolic.svg
-    install -Dm0644 {{app-icon-src}} {{icon_dir}}/{{APPID}}.svg
 
 uninstall:
     @[ "$(id -u)" -ne 0 ] || [ -n "${BIN_DIR:-}" ] || { echo "Run 'just uninstall' WITHOUT sudo — this is a per-user install." >&2; exit 1; }
