@@ -367,6 +367,7 @@ impl AppModel {
                         .align_y(Alignment::Start);
                         let row_btn = widget::button::custom(row)
                             .on_press(Message::ToggleAlert(group.key()))
+                            .padding(0)
                             .width(Length::Fill)
                             .class(flat_toggle_button_style());
                         alert_col = alert_col.push(row_btn);
@@ -394,6 +395,7 @@ impl AppModel {
                                 .align_y(Alignment::Start);
                         let row_btn = widget::button::custom(row)
                             .on_press(Message::ToggleAlert(alert.key()))
+                            .padding(0)
                             .width(Length::Fill)
                             .class(flat_toggle_button_style());
                         alert_col = alert_col.push(row_btn);
@@ -413,6 +415,7 @@ impl AppModel {
                                         .on_press_with_rectangle(move |offset, bounds| {
                                             Message::ToggleFlyout(key.clone(), offset, bounds)
                                         })
+                                        .padding(0)
                                         .class(cosmic::theme::Button::Link),
                                 )
                                 .padding([
@@ -875,6 +878,7 @@ impl AppModel {
 
                 let row_btn = widget::button::custom(row_content)
                     .on_press(Message::ToggleDay(i))
+                    .padding(0)
                     .width(Length::Fill)
                     .class(flat_toggle_button_style());
 
