@@ -746,6 +746,8 @@ impl AppModel {
             let end = (offset + crate::app::HOURLY_PAGE_SIZE).min(total);
             let can_prev = offset > 0;
             let can_next = end < total;
+            // Fixed, not density-scaled: the hourly strip has no width to give at Spacious.
+            let arrow_pad: u16 = 4;
 
             let prev_arrow: Element<'_, Message> = if can_prev {
                 widget::button::icon(
@@ -754,10 +756,11 @@ impl AppModel {
                         .size(16),
                 )
                 .on_press(Message::HourlyPrev)
+                .padding(arrow_pad)
                 .into()
             } else {
                 widget::Space::new()
-                    .width(Length::Fixed(16.0 + 2.0 * f32::from(sp.space_xxs)))
+                    .width(Length::Fixed(16.0 + 2.0 * f32::from(arrow_pad)))
                     .into()
             };
 
@@ -817,10 +820,11 @@ impl AppModel {
                         .size(16),
                 )
                 .on_press(Message::HourlyNext)
+                .padding(arrow_pad)
                 .into()
             } else {
                 widget::Space::new()
-                    .width(Length::Fixed(16.0 + 2.0 * f32::from(sp.space_xxs)))
+                    .width(Length::Fixed(16.0 + 2.0 * f32::from(arrow_pad)))
                     .into()
             };
 
