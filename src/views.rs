@@ -158,8 +158,7 @@ impl AppModel {
 
                 let is_active = i == self.config.active_location_index;
 
-                let label_col =
-                    cosmic::iced::widget::column![widget::text::body(loc.name.clone()),].spacing(2);
+                let label_col = cosmic::iced::widget::column![widget::text::body(loc.name.clone())];
 
                 let selected = if is_active { Some(i) } else { None };
                 let location_radio =
@@ -174,7 +173,7 @@ impl AppModel {
                 let row = cosmic::iced::widget::row![location_radio, delete_btn,]
                     .spacing(sp.space_xxs)
                     .align_y(Alignment::Center)
-                    .padding([6, 4]);
+                    .padding([sp.space_xxs, 4]);
 
                 list = list.push(row);
             }
@@ -363,6 +362,7 @@ impl AppModel {
                             alert_glyph(&group.first().severity),
                             text_col
                         ]
+                        .padding([sp.space_xxxs, 4])
                         .spacing(sp.space_xs)
                         .align_y(Alignment::Start);
                         let row_btn = widget::button::custom(row)
@@ -392,6 +392,7 @@ impl AppModel {
                         let row =
                             cosmic::iced::widget::row![alert_glyph(&alert.severity), text_col]
                                 .spacing(sp.space_xs)
+                                .padding([sp.space_xxxs, 4])
                                 .align_y(Alignment::Start);
                         let row_btn = widget::button::custom(row)
                             .on_press(Message::ToggleAlert(alert.key()))
@@ -422,7 +423,7 @@ impl AppModel {
                                     0,
                                     0,
                                     0,
-                                    16 + sp.space_xs,
+                                    4 + 16 + sp.space_xs,
                                 ]),
                             );
                         }
@@ -526,7 +527,7 @@ impl AppModel {
                 .map(compass_label);
 
             let mut hero_content = cosmic::iced::widget::column![icon_temp_row]
-                .spacing(2)
+                .spacing(sp.space_xxxs)
                 .padding(sp.space_xs)
                 .width(Length::Fill);
 
@@ -583,7 +584,7 @@ impl AppModel {
                     aqi_category_label(a.category)
                 );
                 let pill: Element<'_, Message> = widget::container(widget::text::body(label))
-                    .padding([2, 8])
+                    .padding([sp.space_xxxs, 8])
                     .class(cosmic::theme::Container::custom(move |theme| {
                         let (bg, fg) = aqi_style(sev, theme);
                         cosmic::widget::container::Style {
@@ -683,18 +684,18 @@ impl AppModel {
         let more_btn = widget::button::custom(more_row)
             .on_press(Message::ToggleCurrentMore)
             .width(Length::Fill)
-            .padding([2, 4])
+            .padding([sp.space_xxxs, 4])
             .class(flat_toggle_button_style());
         let mut more = cosmic::iced::widget::column![more_btn]
-            .spacing(2)
+            .spacing(sp.space_xxxs)
             .width(Length::Fill);
 
         if self.current_expanded {
             let obs = self.observation.as_ref();
             let aqi = self.air_quality.as_ref();
             let mut more_col = cosmic::iced::widget::column![]
-                .spacing(2)
-                .padding([6, 0, 0, 0]);
+                .spacing(sp.space_xxxs)
+                .padding([sp.space_xxs, 0, 0, 0]);
 
             let mut secondary: Vec<(String, String)> = Vec::new();
             if let Some(dew) = obs.and_then(|o| o.dew_point) {
@@ -874,7 +875,7 @@ impl AppModel {
                 let row_content = cosmic::iced::widget::row![icon, name_text, temp_text]
                     .spacing(sp.space_xxs)
                     .align_y(Alignment::Center)
-                    .padding([6, 4]);
+                    .padding([sp.space_xxs, 4]);
 
                 let row_btn = widget::button::custom(row_content)
                     .on_press(Message::ToggleDay(i))

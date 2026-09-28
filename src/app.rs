@@ -200,7 +200,7 @@ impl cosmic::Application for AppModel {
                     .into()
             } else {
                 cosmic::iced::widget::column![icon, temp_widget]
-                    .spacing(2)
+                    .spacing(sp.space_xxxs)
                     .align_x(Alignment::Center)
                     .into()
             }
