@@ -21,11 +21,12 @@ A weather applet for the [COSMIC](https://github.com/pop-os/cosmic-epoch) deskto
 
 ## Localization
 
-Whether supports four languages today and can support more. Thanks to these contributors, Whether is available in English and:
+Whether supports five languages today and can support more. Thanks to these contributors, Whether is available in English and:
 
 - **Swedish** - [@bittin](https://github.com/bittin)
 - **Polish** - [@skajmer](https://github.com/skajmer), [@VandaLHJ](https://github.com/VandaLHJ)
 - **Portuguese (Brazil)** - [@wag-panfilli](https://github.com/wag-panfilli)
+- **German** - [@GreatFlo](https://github.com/GreatFlo)
 
 To add a language, copy `i18n/en/cosmic_ext_whether.ftl` into a new locale directory under `i18n/`, translate the value to the right of each `=` while leaving the keys and `{$placeholders}` unchanged, then open a pull request.
 
