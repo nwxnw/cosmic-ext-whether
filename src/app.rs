@@ -15,6 +15,10 @@ use cosmic::Element;
 static AUTOSIZE_MAIN_ID: LazyLock<widget::Id> = LazyLock::new(|| widget::Id::new("autosize-main"));
 
 pub(crate) const FLYOUT_MAX_WIDTH: f32 = 680.0;
+/// libcosmic's `popup_container` height cap; the output cap can only lower it
+pub(crate) const POPUP_MAX_HEIGHT: f32 = 1000.0;
+/// space kept clear beyond the panel slot
+const POPUP_SCREEN_MARGIN: f32 = 16.0;
 
 use crate::backend;
 use crate::config::{self, detect_military_time, WhetherConfig, APP_ID};
@@ -61,6 +65,7 @@ pub struct AppModel {
     pub(crate) expanded_alerts: HashSet<String>,
     pub(crate) fetch_generation: u64,
     pub(crate) military_time: bool,
+    pub(crate) output_height: Option<f32>,
 }
 
 /// Number of hourly columns visible at once between the arrow buttons.
@@ -94,6 +99,7 @@ impl Default for AppModel {
             expanded_alerts: HashSet::new(),
             fetch_generation: 0,
             military_time: false,
+            output_height: None,
         }
     }
 }
@@ -129,6 +135,8 @@ pub enum Message {
     OpenAbout,
     OpenUrl(String),
     Ignore,
+    /// (output name, logical height) from a Wayland output event.
+    OutputHeight(String, f32),
 }
 
 impl cosmic::Application for AppModel {
@@ -270,7 +278,11 @@ impl cosmic::Application for AppModel {
             Page::Locations => self.view_locations(),
             Page::About => self.view_about(),
         };
-        self.core.applet.popup_container(content).into()
+        self.core
+            .applet
+            .popup_container(content)
+            .max_height(self.popup_max_height())
+            .into()
     }
 
     fn update(&mut self, message: Message) -> Task<Message> {
@@ -289,7 +301,24 @@ impl cosmic::Application for AppModel {
         ))
         .map(|_| Message::Tick(()));
 
-        Subscription::batch(vec![config_sub, timer_sub])
+        let output_sub = cosmic::iced::event::listen_with(|event, _, _| {
+            use cosmic::iced::event::{wayland, PlatformSpecific};
+            let cosmic::iced::Event::PlatformSpecific(PlatformSpecific::Wayland(
+                wayland::Event::Output(evt, _),
+            )) = event
+            else {
+                return None;
+            };
+            let info = match evt {
+                wayland::OutputEvent::Created(Some(info))
+                | wayland::OutputEvent::InfoUpdate(info) => info,
+                _ => return None,
+            };
+            let (_, height) = info.logical_size?;
+            Some(Message::OutputHeight(info.name?, height as f32))
+        });
+
+        Subscription::batch(vec![config_sub, timer_sub, output_sub])
     }
 
     fn on_close_requested(&self, id: window::Id) -> Option<Message> {
@@ -331,10 +360,32 @@ impl AppModel {
             && self.alerts.list().iter().any(|a| a.key() == key)
     }
 
+    /// Tallest the popup can be on this output. Falls back to libcosmic's cap
+    /// until the output height is known, or when not launched by the panel.
+    pub(crate) fn popup_max_height(&self) -> f32 {
+        let Some(height) = self.output_height else {
+            return POPUP_MAX_HEIGHT;
+        };
+        let applet = &self.core.applet;
+        let panel = if applet.is_horizontal() {
+            let (_, icon_h) = applet.suggested_size(true);
+            let (_, minor) = applet.suggested_padding(true);
+            f32::from(icon_h + 2 * minor)
+        } else {
+            0.0 // vertical panel: the popup opens beside it, not above or below
+        };
+        (height - panel - POPUP_SCREEN_MARGIN).clamp(1.0, POPUP_MAX_HEIGHT)
+    }
+
     fn handle(&mut self, message: Message) -> Task<Message> {
         match message {
             Message::Surface(a) => {
                 return cosmic::task::message(cosmic::Action::Surface(a));
+            }
+            Message::OutputHeight(name, height) => {
+                if name == self.core.applet.output_name {
+                    self.output_height = Some(height);
+                }
             }
             Message::PopupClosed(id) => {
                 if self.flyout == Some(id) {
