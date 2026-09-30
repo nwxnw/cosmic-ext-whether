@@ -2,6 +2,7 @@
 Name=Whether
 Comment=Weather forecasts, air quality and alerts
 Comment[pl]=Prognozy pogody, jakość powietrza i ostrzeżenia pogodowe
+Comment[de]=Wettervorhersagen, Luftqualität und Warnungen
 Type=Application
 Exec=cosmic-ext-whether
 Terminal=false

@@ -86,6 +86,17 @@
   <!-- Release notes are English-only. Do not add xml:lang translations here;
          translate <summary>, <description>, and screenshot <caption> instead. -->
   <releases>
+    <release version="0.6.0" date="2026-10-01">
+      <description>
+        <ul>
+          <li>Added German translation</li>
+          <li>Location search returns results in system language</li>
+          <li>Saved locations are named by place and region, so a postal code no longer appears in the name</li>
+          <li>The popup now fits and scrolls on short or scaled screens</li>
+          <li>Tighter, more consistent row spacing on every COSMIC interface density</li>
+        </ul>
+      </description>   
+    </release>
     <release version="0.5.0" date="2026-09-07">
       <description>
         <ul>
