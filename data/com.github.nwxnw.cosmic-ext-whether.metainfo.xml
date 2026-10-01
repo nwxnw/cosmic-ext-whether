@@ -14,17 +14,17 @@
   <description>
     <p>Whether is a weather applet for the COSMIC desktop panel, showing current conditions, hourly and 7-day forecasts, and air quality for locations worldwide, with weather alerts in supported regions.</p>
     <p xml:lang="pl">Whether jest apletem pogodowym panelu dla środowiska COSMIC, pokazującym obecne warunki pogodowe, godzinne i tygodniowe prognozy, jakość powietrza dla całego świata z ostrzeżeniami pogodowymi dla wspieranych regionów.</p>
-    <p xml:lang="de">Whether ist ein Wetter-Applet für das COSMIC-Panel. Es zeigt aktuelle Bedingungen, stündliche und 7-Tage-Vorhersagen sowie die Luftqualität für Standorte weltweit, mit Wetterwarnungen in unterstützten Regionen.</p>
+    <p xml:lang="de">Whether ist ein Wetter-Applet für das COSMIC-Panel. Es zeigt das aktuelle Wetter, stündliche und 7-Tage-Vorhersagen sowie die Luftqualität für Standorte weltweit und bietet Wetterwarnungen in unterstützten Regionen.</p>
     <p>Weather data is sourced automatically by location via weathervane - Open-Meteo provides the worldwide base forecast, NWS overlays US current conditions and daily forecast detail, JMA provides local current temperatures in Japan.</p>
     <p xml:lang="pl">Dane pogodowe są automatycznie sczytywane dla wybranego położenia przez weathervane - Open-Meteo zapewnia ogólnoświatowe prognozy, NWS nakłada obecne warunki i prognozy dla Stanów Zjednoczonych, a JMA mierzy temperatury dla Japonii.</p>
-    <p xml:lang="de">Die Wetterdaten werden über weathervane automatisch passend zum Standort bezogen: Open-Meteo liefert die weltweite Basisvorhersage, NWS ergänzt aktuelle Bedingungen und Tagesvorhersagen für die USA, und JMA liefert lokale aktuelle Temperaturen in Japan.</p>
+    <p xml:lang="de">Die Wetterdaten werden über weathervane automatisch für den jeweiligen Standort bezogen: Open-Meteo liefert die weltweite Basisvorhersage, NWS ergänzt aktuelle Wetterdaten und Tagesvorhersagen für die USA und JMA liefert lokale aktuelle Temperaturen in Japan.</p>
     <p>Features include:</p>
     <p xml:lang="pl">Funkcjonalności:</p>
     <p xml:lang="de">Funktionen:</p>
     <ul>
       <li>Current conditions: temperature, feels-like, humidity, wind and gusts, precipitation, AQI, and UV index</li>
       <li xml:lang="pl">Obecne warunki: temperatura, odczuwana temperatura, wilgotność, wiatr i podmuchy, opady, AQI i indeks UV</li>
-      <li xml:lang="de">Aktuelle Bedingungen: Temperatur, gefühlte Temperatur, Luftfeuchtigkeit, Wind und Böen, Niederschlag, AQI und UV-Index</li>
+      <li xml:lang="de">Aktuelles Wetter: Temperatur, gefühlte Temperatur, Luftfeuchtigkeit, Wind und Böen, Niederschlag, AQI und UV-Index</li>
       <li>Expandable detail: dew point, pressure, and the pollutant breakdown (PM2.5, PM10, ozone)</li>
       <li xml:lang="pl">Rozwijalne szczegóły: punkt rosy, ciśnienie i jakość powietrza (PM2.5, PM10, ozon)</li>
       <li xml:lang="de">Ausklappbare Details: Taupunkt, Luftdruck und Schadstoffwerte (PM2.5, PM10, Ozon)</li>
@@ -80,7 +80,7 @@
       <image>https://raw.githubusercontent.com/nwxnw/cosmic-ext-whether/master/screenshots/whether-languages-store-v0.5.0.png</image>
       <caption>Current conditions and forecast in Swedish, Polish, Brazilian Portuguese, and English</caption>
       <caption xml:lang="pl">Obecne warunki oraz prognozy w językach: szwedzkim, polskim, brazylijskim portugalskim i angielskim</caption>
-      <caption xml:lang="de">Aktuelle Bedingungen und Vorhersage auf Schwedisch, Polnisch, brasilianischem Portugiesisch und Englisch</caption>
+      <caption xml:lang="de">Aktuelles Wetter und Vorhersagen auf Deutsch, Schwedisch, Polnisch, brasilianischem Portugiesisch und Englisch</caption>
     </screenshot>
   </screenshots>
   <!-- Release notes are English-only. Do not add xml:lang translations here;
