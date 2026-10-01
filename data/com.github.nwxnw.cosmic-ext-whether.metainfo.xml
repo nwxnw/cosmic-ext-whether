@@ -80,7 +80,7 @@
       <image>https://raw.githubusercontent.com/nwxnw/cosmic-ext-whether/master/screenshots/whether-languages-store-v0.5.0.png</image>
       <caption>Current conditions and forecast in Swedish, Polish, Brazilian Portuguese, and English</caption>
       <caption xml:lang="pl">Obecne warunki oraz prognozy w językach: szwedzkim, polskim, brazylijskim portugalskim i angielskim</caption>
-      <caption xml:lang="de">Aktuelles Wetter und Vorhersagen auf Deutsch, Schwedisch, Polnisch, brasilianischem Portugiesisch und Englisch</caption>
+      <caption xml:lang="de">Aktuelles Wetter und Vorhersagen auf Schwedisch, Polnisch, brasilianischem Portugiesisch und Englisch</caption>
     </screenshot>
   </screenshots>
   <!-- Release notes are English-only. Do not add xml:lang translations here;
