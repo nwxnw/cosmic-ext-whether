@@ -23,7 +23,7 @@ label-precipitation = Opady
 label-humidity = Wilgotność
 label-aqi = AQI
 label-uv = UV
-feels-like = Odczuwalna {$temp}
+feels-like = Odczuwalnie {$temp}
 gusting-to = w porywach do {$gust}
 
 ## Current card - "More" expander
@@ -67,16 +67,16 @@ uv-level-very-high = Bardzo wysoki
 uv-level-extreme = Ekstremalny
 
 ## Reference - AQI categories
-aqi-cat-good = Dobra
-aqi-cat-moderate = Średnia
-aqi-cat-unhealthy-sensitive = Niezdrowa dla wrażliwych grup
-aqi-cat-unhealthy = Niezdrowa
-aqi-cat-very-unhealthy = Bardzo niezdrowa
-aqi-cat-hazardous = Niebezpieczna
-aqi-cat-fair = Umiarkowana
-aqi-cat-poor = Słaba
-aqi-cat-very-poor = Bardzo słaba
-aqi-cat-extremely-poor = Ekstremalnie słaba
+aqi-cat-good = Dobrze
+aqi-cat-moderate = Średnio
+aqi-cat-unhealthy-sensitive = Niezdrowo dla wrażliwych grup
+aqi-cat-unhealthy = Niezdrowo
+aqi-cat-very-unhealthy = Bardzo niezdrowo
+aqi-cat-hazardous = Niebezpiecznie
+aqi-cat-fair = Umiarkowanie
+aqi-cat-poor = Słabo
+aqi-cat-very-poor = Bardzo słabo
+aqi-cat-extremely-poor = Ekstremalnie słabo
 
 ## Reference - weather conditions
 condition-clear-sky = Bezchmurne niebo
