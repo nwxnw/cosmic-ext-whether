@@ -1030,7 +1030,7 @@ dependencies = [
 
 [[package]]
 name = "cosmic-ext-whether"
-version = "0.7.0"
+version = "0.8.0"
 dependencies = [
  "chrono",
  "i18n-embed",
