@@ -764,8 +764,7 @@ impl AppModel {
             };
 
             let mut hourly_row = cosmic::iced::widget::row![].spacing(0);
-            for i in offset..end {
-                let period = &forecast.hourly_periods[i];
+            for (i, period) in (offset..end).zip(&forecast.hourly_periods[offset..end]) {
                 let hour_label = if i == 0 {
                     fl!("hourly-now")
                 } else {
