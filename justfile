@@ -7,7 +7,7 @@ prefix := env_var('HOME') / '.local'
 base-dir := absolute_path(clean(rootdir / prefix))
 export INSTALL_DIR := base-dir / 'share'
 
-bin-src := 'target' / 'release' / name
+bin-src := env_var_or_default('CARGO_TARGET_DIR', 'target') / 'release' / name
 
 # Configurable paths (overridden by env vars during flatpak builds)
 bin_dir := env_var_or_default("BIN_DIR", base-dir / 'bin')
